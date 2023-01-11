@@ -1,0 +1,23 @@
+{
+    "ev_mod_menu": {
+        "$armor_hud": true,
+        "$bossbar": true,
+        "$brighter": false,
+        "$brighter_alpha": 0.7,
+        "$chat": true,
+        "$compass_and_clock": true,
+        "$crosshair": false,
+        "$effect_icon": true,
+        "$f1_button": false,
+        "$input": true,
+        "$item_aux_id": false,
+        "$java_item_name": false,
+        "$main_hand_hud": true,
+        "$paper_doll": false,
+        "$percent_durability": false,
+        "$scoreboard": true,
+        "$vignette": false,
+        "$world_name": false
+    },
+    "namespace": "config"
+}

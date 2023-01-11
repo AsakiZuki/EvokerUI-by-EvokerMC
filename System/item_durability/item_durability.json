@@ -1,0 +1,853 @@
+/*
+
+©2022 by Asaki Zuki, please do not delete this text and steal any code without my permission!
+Youtube: https://www.youtube.com/channel/UCqz1oL2R-iO9Sw9FlribnXg
+Facebook: https://facebook.com/creator.asakizuki
+Discord: Asaki Zuki#0001
+
+*/
+
+{
+    "namespace": "asa_hud_content",
+
+    //Durability Percent
+    "asa_durability_percent": {
+        "$asa_total_bar": "#item_durability_total_amount",
+        "$asa_current_bar": "#item_durability_current_amount",
+        "bindings": [
+            {
+                "binding_name": "$asa_total_bar",
+                "binding_type": "collection",
+                "binding_collection_name": "hotbar_items"
+            },
+            {
+                "binding_name": "$asa_current_bar",
+                "binding_type": "collection",
+                "binding_collection_name": "hotbar_items"
+            },
+            {
+                "binding_type": "view",
+                "source_property_name": "((($asa_current_bar / $asa_total_bar) > $min_durability) and (($asa_current_bar / $asa_total_bar) < $max_durability)) or (($asa_current_bar / $asa_total_bar) = $min_durability)",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+
+    "asa_main_hand_durability_percent": {
+        "type": "grid",
+        "grid_item_template": "asa_hud_content.asa_dura_panel",
+        "grid_dimension_binding": "#hotbar_grid_dimensions",
+        "collection_name": "hotbar_items",
+        "size": [ "100%cm", "100%cm" ],
+        "bindings": [
+            {
+                "binding_name": "#hotbar_grid_dimensions",
+                "binding_type": "global"
+            }
+        ]
+    },
+
+    "asa_dura_panel": {
+        "type": "panel",
+        "size": [ 0, 0 ],
+        "bindings": [
+            {
+                "binding_name": "#slot_selected",
+                "binding_name_override": "#visible",
+                "binding_type": "collection",
+                "binding_collection_name": "hotbar_items"
+            }
+        ],
+        "controls": [
+            {
+                "@asa_durability_item_with_bg": {}
+            }
+        ]
+    },
+
+    "asa_durability_item_with_bg": {
+        "type": "image",
+        "size": [ "100%c + 4px", "100%c + 4px" ],
+        "layer": -5,
+        "texture": "textures/ui/light_button_banner",
+        "color": [ 0, 0, 0 ],
+        "anchor_from": "right_middle",
+        "anchor_to": "right_middle",
+        "bindings": [
+            {
+                "binding_name": "(not (#item_durability_total_amount = 0))",
+                "binding_name_override": "#visible",
+                "binding_type": "collection",
+                "binding_collection_name": "hotbar_items"
+            }
+        ],
+        "controls": [
+            {
+                "@asa_dura_panel_percent": {}
+            }
+        ]
+    },
+
+    "asa_dura_panel_percent": {
+        "type": "stack_panel",
+        "size": [ "100%c", "100%cm" ],
+        "orientation": "horizontal",
+        "controls": [
+            {
+                "asa_durability@asa_durability_percent_panel": {}
+            },
+            {
+                "asa_percent@asa_durability_percent": {
+                    "type": "label",
+                    "max_size": [ "default", 10 ],
+                    "color": "yellow",
+                    "text": "%",
+                    "font_scale_factor": 1,
+                    "layer": 10,
+                    "shadow": true,
+                    "localize": false,
+                    "$min_durability": 0,
+                    "$max_durability": 1.01
+                }
+            }
+        ]
+    },
+
+    "asa_durability_text": {
+        "type": "panel",
+        "size": [ "100%c", "100%cm" ],
+        "controls": [
+            {
+                "asa_percent@asa_durability_percent": {
+                    "type": "label",
+                    "max_size": [ "default", 10 ],
+                    "color": "yellow",
+                    "text": "$asa_durability_text",
+                    "font_scale_factor": 1,
+                    "layer": 10,
+                    "shadow": true,
+                    "localize": false
+                }
+            }
+        ]
+    },
+
+    "asa_durability_percent_panel": {
+        "type": "panel",
+        "layer": 20,
+        "$is_grabbed": false,
+        "size": [
+            "100%c",
+            "100%cm"
+        ],
+        "controls": [
+            {
+                "0@asa_durability_text": {
+                    "$asa_durability_text": "0",
+                    "$min_durability": 0.00,
+                    "$max_durability": 0.01
+                }
+            },
+            {
+                "1@asa_durability_text": {
+                    "$asa_durability_text": "1",
+                    "$min_durability": 0.01,
+                    "$max_durability": 0.02
+                }
+            },
+            {
+                "2@asa_durability_text": {
+                    "$asa_durability_text": "2",
+                    "$min_durability": 0.02,
+                    "$max_durability": 0.03
+                }
+            },
+            {
+                "3@asa_durability_text": {
+                    "$asa_durability_text": "3",
+                    "$min_durability": 0.03,
+                    "$max_durability": 0.04
+                }
+            },
+            {
+                "4@asa_durability_text": {
+                    "$asa_durability_text": "4",
+                    "$min_durability": 0.04,
+                    "$max_durability": 0.05
+                }
+            },
+            {
+                "5@asa_durability_text": {
+                    "$asa_durability_text": "5",
+                    "$min_durability": 0.05,
+                    "$max_durability": 0.06
+                }
+            },
+            {
+                "6@asa_durability_text": {
+                    "$asa_durability_text": "6",
+                    "$min_durability": 0.06,
+                    "$max_durability": 0.07
+                }
+            },
+            {
+                "7@asa_durability_text": {
+                    "$asa_durability_text": "7",
+                    "$min_durability": 0.07,
+                    "$max_durability": 0.08
+                }
+            },
+            {
+                "8@asa_durability_text": {
+                    "$asa_durability_text": "8",
+                    "$min_durability": 0.08,
+                    "$max_durability": 0.09
+                }
+            },
+            {
+                "9@asa_durability_text": {
+                    "$asa_durability_text": "9",
+                    "$min_durability": 0.09,
+                    "$max_durability": 0.10
+                }
+            },
+            {
+                "10@asa_durability_text": {
+                    "$asa_durability_text": "10",
+                    "$min_durability": 0.10,
+                    "$max_durability": 0.11
+                }
+            },
+            {
+                "11@asa_durability_text": {
+                    "$asa_durability_text": "11",
+                    "$min_durability": 0.11,
+                    "$max_durability": 0.12
+                }
+            },
+            {
+                "12@asa_durability_text": {
+                    "$asa_durability_text": "12",
+                    "$min_durability": 0.12,
+                    "$max_durability": 0.13
+                }
+            },
+            {
+                "13@asa_durability_text": {
+                    "$asa_durability_text": "13",
+                    "$min_durability": 0.13,
+                    "$max_durability": 0.14
+                }
+            },
+            {
+                "14@asa_durability_text": {
+                    "$asa_durability_text": "14",
+                    "$min_durability": 0.14,
+                    "$max_durability": 0.15
+                }
+            },
+            {
+                "15@asa_durability_text": {
+                    "$asa_durability_text": "15",
+                    "$min_durability": 0.15,
+                    "$max_durability": 0.16
+                }
+            },
+            {
+                "16@asa_durability_text": {
+                    "$asa_durability_text": "16",
+                    "$min_durability": 0.16,
+                    "$max_durability": 0.17
+                }
+            },
+            {
+                "17@asa_durability_text": {
+                    "$asa_durability_text": "17",
+                    "$min_durability": 0.17,
+                    "$max_durability": 0.18
+                }
+            },
+            {
+                "18@asa_durability_text": {
+                    "$asa_durability_text": "18",
+                    "$min_durability": 0.18,
+                    "$max_durability": 0.19
+                }
+            },
+            {
+                "19@asa_durability_text": {
+                    "$asa_durability_text": "19",
+                    "$min_durability": 0.19,
+                    "$max_durability": 0.20
+                }
+            },
+            {
+                "20@asa_durability_text": {
+                    "$asa_durability_text": "20",
+                    "$min_durability": 0.20,
+                    "$max_durability": 0.21
+                }
+            },
+            {
+                "21@asa_durability_text": {
+                    "$asa_durability_text": "21",
+                    "$min_durability": 0.21,
+                    "$max_durability": 0.22
+                }
+            },
+            {
+                "22@asa_durability_text": {
+                    "$asa_durability_text": "22",
+                    "$min_durability": 0.22,
+                    "$max_durability": 0.23
+                }
+            },
+            {
+                "23@asa_durability_text": {
+                    "$asa_durability_text": "23",
+                    "$min_durability": 0.23,
+                    "$max_durability": 0.24
+                }
+            },
+            {
+                "24@asa_durability_text": {
+                    "$asa_durability_text": "24",
+                    "$min_durability": 0.24,
+                    "$max_durability": 0.25
+                }
+            },
+            {
+                "25@asa_durability_text": {
+                    "$asa_durability_text": "25",
+                    "$min_durability": 0.25,
+                    "$max_durability": 0.26
+                }
+            },
+            {
+                "26@asa_durability_text": {
+                    "$asa_durability_text": "26",
+                    "$min_durability": 0.26,
+                    "$max_durability": 0.27
+                }
+            },
+            {
+                "27@asa_durability_text": {
+                    "$asa_durability_text": "27",
+                    "$min_durability": 0.27,
+                    "$max_durability": 0.28
+                }
+            },
+            {
+                "28@asa_durability_text": {
+                    "$asa_durability_text": "28",
+                    "$min_durability": 0.28,
+                    "$max_durability": 0.29
+                }
+            },
+            {
+                "29@asa_durability_text": {
+                    "$asa_durability_text": "29",
+                    "$min_durability": 0.29,
+                    "$max_durability": 0.30
+                }
+            },
+            {
+                "30@asa_durability_text": {
+                    "$asa_durability_text": "30",
+                    "$min_durability": 0.30,
+                    "$max_durability": 0.31
+                }
+            },
+            {
+                "31@asa_durability_text": {
+                    "$asa_durability_text": "31",
+                    "$min_durability": 0.31,
+                    "$max_durability": 0.32
+                }
+            },
+            {
+                "32@asa_durability_text": {
+                    "$asa_durability_text": "32",
+                    "$min_durability": 0.32,
+                    "$max_durability": 0.33
+                }
+            },
+            {
+                "33@asa_durability_text": {
+                    "$asa_durability_text": "33",
+                    "$min_durability": 0.33,
+                    "$max_durability": 0.34
+                }
+            },
+            {
+                "34@asa_durability_text": {
+                    "$asa_durability_text": "34",
+                    "$min_durability": 0.34,
+                    "$max_durability": 0.35
+                }
+            },
+            {
+                "35@asa_durability_text": {
+                    "$asa_durability_text": "35",
+                    "$min_durability": 0.35,
+                    "$max_durability": 0.36
+                }
+            },
+            {
+                "36@asa_durability_text": {
+                    "$asa_durability_text": "36",
+                    "$min_durability": 0.36,
+                    "$max_durability": 0.37
+                }
+            },
+            {
+                "37@asa_durability_text": {
+                    "$asa_durability_text": "37",
+                    "$min_durability": 0.37,
+                    "$max_durability": 0.38
+                }
+            },
+            {
+                "38@asa_durability_text": {
+                    "$asa_durability_text": "38",
+                    "$min_durability": 0.38,
+                    "$max_durability": 0.39
+                }
+            },
+            {
+                "39@asa_durability_text": {
+                    "$asa_durability_text": "39",
+                    "$min_durability": 0.39,
+                    "$max_durability": 0.40
+                }
+            },
+            {
+                "40@asa_durability_text": {
+                    "$asa_durability_text": "40",
+                    "$min_durability": 0.40,
+                    "$max_durability": 0.41
+                }
+            },
+            {
+                "41@asa_durability_text": {
+                    "$asa_durability_text": "41",
+                    "$min_durability": 0.41,
+                    "$max_durability": 0.42
+                }
+            },
+            {
+                "42@asa_durability_text": {
+                    "$asa_durability_text": "42",
+                    "$min_durability": 0.42,
+                    "$max_durability": 0.43
+                }
+            },
+            {
+                "43@asa_durability_text": {
+                    "$asa_durability_text": "43",
+                    "$min_durability": 0.43,
+                    "$max_durability": 0.44
+                }
+            },
+            {
+                "44@asa_durability_text": {
+                    "$asa_durability_text": "44",
+                    "$min_durability": 0.44,
+                    "$max_durability": 0.45
+                }
+            },
+            {
+                "45@asa_durability_text": {
+                    "$asa_durability_text": "45",
+                    "$min_durability": 0.45,
+                    "$max_durability": 0.46
+                }
+            },
+            {
+                "46@asa_durability_text": {
+                    "$asa_durability_text": "46",
+                    "$min_durability": 0.46,
+                    "$max_durability": 0.47
+                }
+            },
+            {
+                "47@asa_durability_text": {
+                    "$asa_durability_text": "47",
+                    "$min_durability": 0.47,
+                    "$max_durability": 0.48
+                }
+            },
+            {
+                "48@asa_durability_text": {
+                    "$asa_durability_text": "48",
+                    "$min_durability": 0.48,
+                    "$max_durability": 0.49
+                }
+            },
+            {
+                "49@asa_durability_text": {
+                    "$asa_durability_text": "49",
+                    "$min_durability": 0.49,
+                    "$max_durability": 0.50
+                }
+            },
+            {
+                "50@asa_durability_text": {
+                    "$asa_durability_text": "50",
+                    "$min_durability": 0.50,
+                    "$max_durability": 0.51
+                }
+            },
+            {
+                "51@asa_durability_text": {
+                    "$asa_durability_text": "51",
+                    "$min_durability": 0.51,
+                    "$max_durability": 0.52
+                }
+            },
+            {
+                "52@asa_durability_text": {
+                    "$asa_durability_text": "52",
+                    "$min_durability": 0.52,
+                    "$max_durability": 0.53
+                }
+            },
+            {
+                "53@asa_durability_text": {
+                    "$asa_durability_text": "53",
+                    "$min_durability": 0.53,
+                    "$max_durability": 0.54
+                }
+            },
+            {
+                "54@asa_durability_text": {
+                    "$asa_durability_text": "54",
+                    "$min_durability": 0.54,
+                    "$max_durability": 0.55
+                }
+            },
+            {
+                "55@asa_durability_text": {
+                    "$asa_durability_text": "55",
+                    "$min_durability": 0.55,
+                    "$max_durability": 0.56
+                }
+            },
+            {
+                "56@asa_durability_text": {
+                    "$asa_durability_text": "56",
+                    "$min_durability": 0.56,
+                    "$max_durability": 0.57
+                }
+            },
+            {
+                "57@asa_durability_text": {
+                    "$asa_durability_text": "57",
+                    "$min_durability": 0.57,
+                    "$max_durability": 0.58
+                }
+            },
+            {
+                "58@asa_durability_text": {
+                    "$asa_durability_text": "58",
+                    "$min_durability": 0.58,
+                    "$max_durability": 0.59
+                }
+            },
+            {
+                "59@asa_durability_text": {
+                    "$asa_durability_text": "59",
+                    "$min_durability": 0.59,
+                    "$max_durability": 0.60
+                }
+            },
+            {
+                "60@asa_durability_text": {
+                    "$asa_durability_text": "60",
+                    "$min_durability": 0.60,
+                    "$max_durability": 0.61
+                }
+            },
+            {
+                "61@asa_durability_text": {
+                    "$asa_durability_text": "61",
+                    "$min_durability": 0.61,
+                    "$max_durability": 0.62
+                }
+            },
+            {
+                "62@asa_durability_text": {
+                    "$asa_durability_text": "62",
+                    "$min_durability": 0.62,
+                    "$max_durability": 0.63
+                }
+            },
+            {
+                "63@asa_durability_text": {
+                    "$asa_durability_text": "63",
+                    "$min_durability": 0.63,
+                    "$max_durability": 0.64
+                }
+            },
+            {
+                "64@asa_durability_text": {
+                    "$asa_durability_text": "64",
+                    "$min_durability": 0.64,
+                    "$max_durability": 0.65
+                }
+            },
+            {
+                "65@asa_durability_text": {
+                    "$asa_durability_text": "65",
+                    "$min_durability": 0.65,
+                    "$max_durability": 0.66
+                }
+            },
+            {
+                "66@asa_durability_text": {
+                    "$asa_durability_text": "66",
+                    "$min_durability": 0.66,
+                    "$max_durability": 0.67
+                }
+            },
+            {
+                "67@asa_durability_text": {
+                    "$asa_durability_text": "67",
+                    "$min_durability": 0.67,
+                    "$max_durability": 0.68
+                }
+            },
+            {
+                "68@asa_durability_text": {
+                    "$asa_durability_text": "68",
+                    "$min_durability": 0.68,
+                    "$max_durability": 0.69
+                }
+            },
+            {
+                "69@asa_durability_text": {
+                    "$asa_durability_text": "69",
+                    "$min_durability": 0.69,
+                    "$max_durability": 0.70
+                }
+            },
+            {
+                "70@asa_durability_text": {
+                    "$asa_durability_text": "70",
+                    "$min_durability": 0.70,
+                    "$max_durability": 0.71
+                }
+            },
+            {
+                "71@asa_durability_text": {
+                    "$asa_durability_text": "71",
+                    "$min_durability": 0.71,
+                    "$max_durability": 0.72
+                }
+            },
+            {
+                "72@asa_durability_text": {
+                    "$asa_durability_text": "72",
+                    "$min_durability": 0.72,
+                    "$max_durability": 0.73
+                }
+            },
+            {
+                "73@asa_durability_text": {
+                    "$asa_durability_text": "73",
+                    "$min_durability": 0.73,
+                    "$max_durability": 0.74
+                }
+            },
+            {
+                "74@asa_durability_text": {
+                    "$asa_durability_text": "74",
+                    "$min_durability": 0.74,
+                    "$max_durability": 0.75
+                }
+            },
+            {
+                "75@asa_durability_text": {
+                    "$asa_durability_text": "75",
+                    "$min_durability": 0.75,
+                    "$max_durability": 0.76
+                }
+            },
+            {
+                "76@asa_durability_text": {
+                    "$asa_durability_text": "76",
+                    "$min_durability": 0.76,
+                    "$max_durability": 0.77
+                }
+            },
+            {
+                "77@asa_durability_text": {
+                    "$asa_durability_text": "77",
+                    "$min_durability": 0.77,
+                    "$max_durability": 0.78
+                }
+            },
+            {
+                "78@asa_durability_text": {
+                    "$asa_durability_text": "78",
+                    "$min_durability": 0.78,
+                    "$max_durability": 0.79
+                }
+            },
+            {
+                "79@asa_durability_text": {
+                    "$asa_durability_text": "79",
+                    "$min_durability": 0.79,
+                    "$max_durability": 0.80
+                }
+            },
+            {
+                "80@asa_durability_text": {
+                    "$asa_durability_text": "80",
+                    "$min_durability": 0.80,
+                    "$max_durability": 0.81
+                }
+            },
+            {
+                "81@asa_durability_text": {
+                    "$asa_durability_text": "81",
+                    "$min_durability": 0.81,
+                    "$max_durability": 0.82
+                }
+            },
+            {
+                "82@asa_durability_text": {
+                    "$asa_durability_text": "82",
+                    "$min_durability": 0.82,
+                    "$max_durability": 0.83
+                }
+            },
+            {
+                "83@asa_durability_text": {
+                    "$asa_durability_text": "83",
+                    "$min_durability": 0.83,
+                    "$max_durability": 0.84
+                }
+            },
+            {
+                "84@asa_durability_text": {
+                    "$asa_durability_text": "84",
+                    "$min_durability": 0.84,
+                    "$max_durability": 0.85
+                }
+            },
+            {
+                "85@asa_durability_text": {
+                    "$asa_durability_text": "85",
+                    "$min_durability": 0.85,
+                    "$max_durability": 0.86
+                }
+            },
+            {
+                "86@asa_durability_text": {
+                    "$asa_durability_text": "86",
+                    "$min_durability": 0.86,
+                    "$max_durability": 0.87
+                }
+            },
+            {
+                "87@asa_durability_text": {
+                    "$asa_durability_text": "87",
+                    "$min_durability": 0.87,
+                    "$max_durability": 0.88
+                }
+            },
+            {
+                "88@asa_durability_text": {
+                    "$asa_durability_text": "88",
+                    "$min_durability": 0.88,
+                    "$max_durability": 0.89
+                }
+            },
+            {
+                "89@asa_durability_text": {
+                    "$asa_durability_text": "89",
+                    "$min_durability": 0.89,
+                    "$max_durability": 0.90
+                }
+            },
+            {
+                "90@asa_durability_text": {
+                    "$asa_durability_text": "90",
+                    "$min_durability": 0.90,
+                    "$max_durability": 0.91
+                }
+            },
+            {
+                "91@asa_durability_text": {
+                    "$asa_durability_text": "91",
+                    "$min_durability": 0.91,
+                    "$max_durability": 0.92
+                }
+            },
+            {
+                "92@asa_durability_text": {
+                    "$asa_durability_text": "92",
+                    "$min_durability": 0.92,
+                    "$max_durability": 0.93
+                }
+            },
+            {
+                "93@asa_durability_text": {
+                    "$asa_durability_text": "93",
+                    "$min_durability": 0.93,
+                    "$max_durability": 0.94
+                }
+            },
+            {
+                "94@asa_durability_text": {
+                    "$asa_durability_text": "94",
+                    "$min_durability": 0.94,
+                    "$max_durability": 0.95
+                }
+            },
+            {
+                "95@asa_durability_text": {
+                    "$asa_durability_text": "95",
+                    "$min_durability": 0.95,
+                    "$max_durability": 0.96
+                }
+            },
+            {
+                "96@asa_durability_text": {
+                    "$asa_durability_text": "96",
+                    "$min_durability": 0.96,
+                    "$max_durability": 0.97
+                }
+            },
+            {
+                "97@asa_durability_text": {
+                    "$asa_durability_text": "97",
+                    "$min_durability": 0.97,
+                    "$max_durability": 0.98
+                }
+            },
+            {
+                "98@asa_durability_text": {
+                    "$asa_durability_text": "98",
+                    "$min_durability": 0.98,
+                    "$max_durability": 0.99
+                }
+            },
+            {
+                "99@asa_durability_text": {
+                    "$asa_durability_text": "99",
+                    "$min_durability": 0.99,
+                    "$max_durability": 1.00
+                }
+            },
+            {
+                "100@asa_durability_text": {
+                    "$asa_durability_text": "100",
+                    "$min_durability": 1.00,
+                    "$max_durability": 1.01
+                }
+            }
+        ]
+    }
+}

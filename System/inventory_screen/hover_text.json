@@ -1,0 +1,1 @@
+{"hover_text":{"controls":[{"v_label":{"font_type":"smooth","layer":30,"text":"$hover_text","type":"label"}}],"ignored":"(not $toggle_checked_hover)","layer":29,"offset":[46,0],"size":["100%c + 8px","100%c + 6px"],"texture":"textures/ui/purpleBorder","type":"image"},"namespace":"hover"}

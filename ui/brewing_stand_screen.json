@@ -1,0 +1,97 @@
+{
+    "brewing_stand_panel": {
+        "controls": [
+            {
+                "container_gamepad_helpers@common.container_gamepad_helpers": {}
+            },
+            {
+                "flying_item_renderer@common.flying_item_renderer": {
+                    "layer": 11
+                }
+            },
+            {
+                "selected_item_details_factory@common.selected_item_details_factory": {}
+            },
+            {
+                "item_lock_notification_factory@common.item_lock_notification_factory": {}
+            },
+            {
+                "root_panel@common.root_panel": {
+                    "controls": [
+                        {
+                            "common_panel@common.common_panel": {}
+                        },
+                        {
+                            "furnace_screen_inventory": {
+                                "controls": [
+                                    {
+                                        "brewing_panel_top_half@brewing_stand.brewing_panel_top_half": {}
+                                    },
+                                    {
+                                        "inventory_panel_bottom_half_with_label@common.inventory_panel_bottom_half_with_label": {}
+                                    },
+                                    {
+                                        "hotbar_grid@common.hotbar_grid_template": {}
+                                    },
+                                    {
+                                        "inventory_take_progress_icon_button@common.inventory_take_progress_icon_button": {}
+                                    }
+                                ],
+                                "layer": 5,
+                                "type": "panel"
+                            }
+                        },
+                        {
+                            "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+                        },
+                        {
+                            "gamepad_cursor@common.gamepad_cursor_button": {}
+                        }
+                    ],
+                    "layer": 1,
+                    "offset": [
+                        -10,
+                        0
+                    ]
+                }
+            },
+            {
+                "v_dialog@common_dialogs.main_panel_no_buttons": {
+                    "$child_control": "brewing_stand.rcp_v_list_scrolling",
+                    "$show_close_button": false,
+                    "$text_name": "Recipe",
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "layer": 22,
+                    "offset": [
+                        140,
+                        0
+                    ],
+                    "size": [
+                        120,
+                        170
+                    ]
+                }
+            }
+        ],
+        "type": "panel"
+    },
+    "pnl": {
+        "layer": 30,
+        "offset": [
+            -37,
+            0
+        ],
+        "size": [
+            175,
+            225
+        ],
+        "texture": "textures/ui/q_bw",
+        "type": "image"
+    },
+    "rcp_v_list_scrolling@common.scrolling_panel": {
+        "$scrolling_content": "brewing_stand.pnl",
+        "$show_background": false,
+        "layer": 24
+    }
+}

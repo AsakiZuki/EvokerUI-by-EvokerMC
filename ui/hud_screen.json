@@ -1,0 +1,2611 @@
+{
+    "chat_panel": {
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "bindings": [
+            {
+                "binding_type": "view",
+                "source_control_name": "chat_pnl",
+                "source_property_name": "#toggle_state",
+                "target_property_name": "#visible"
+            }
+        ],
+        "controls": [
+            {
+                "stack_panel": {
+                    "anchor_from": "bottom_left",
+                    "anchor_to": "bottom_left",
+                    "factory": {
+                        "control_ids": {
+                            "chat_item": "chat_item@hud.chat_grid_item"
+                        },
+                        "max_children_size": 50,
+                        "name": "chat_item_factory"
+                    },
+                    "type": "stack_panel"
+                }
+            }
+        ],
+        "max_size": [
+            "100%",
+            "50%"
+        ],
+        "size": [
+            "100%",
+            "100%c"
+        ],
+        "type": "panel"
+    },
+    "content_toggle_label": {
+        "controls": [
+            {
+                "icon": {
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "layer": 65,
+                    "offset": [
+                        0,
+                        -12
+                    ],
+                    "size": [
+                        28,
+                        28
+                    ],
+                    "texture": "$select_icon",
+                    "type": "image"
+                }
+            },
+            {
+                "label": {
+                    "anchor_from": "bottom_middle",
+                    "anchor_to": "bottom_middle",
+                    "font_type": "smooth",
+                    "layer": 66,
+                    "offset": [
+                        0,
+                        -18
+                    ],
+                    "text": "$button_text",
+                    "type": "label"
+                }
+            }
+        ],
+        "size": [
+            75,
+            70
+        ],
+        "type": "panel"
+    },
+    "hide_enchant_text": {
+        "$destroy_id|default": "item_name_text",
+        "$show_interact_padding|default": false,
+        "$show_survival_padding|default": false,
+        "$show_text_background|default": false,
+        "$text_binding|default": "#item_text",
+        "$text_color|default": "$tool_tip_text",
+        "$wait_duration|default": 1,
+        "anchor_from": "bottom_middle",
+        "anchor_to": "bottom_middle",
+        "controls": [
+            {
+                "item_text_aligner": {
+                    "controls": [
+                        {
+                            "item_text_control": {
+                                "clips_children": true,
+                                "controls": [
+                                    {
+                                        "item_text_background": {
+                                            "alpha": "@hud.anim_item_name_background_alpha_in",
+                                            "ignored": "(not $show_text_background)",
+                                            "size": [
+                                                "100%sm + 12px",
+                                                "100%sm + 5px"
+                                            ],
+                                            "texture": "textures/ui/hud_tip_text_background",
+                                            "type": "image"
+                                        }
+                                    },
+                                    {
+                                        "item_text_label": {
+                                            "alpha": "@hud.anim_item_name_text_alpha_in",
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "bindings": [
+                                                {
+                                                    "binding_name": "$text_binding",
+                                                    "binding_name_override": "#text"
+                                                }
+                                            ],
+                                            "color": "$text_color",
+                                            "layer": 31,
+                                            "max_size": [
+                                                200,
+                                                "default"
+                                            ],
+                                            "text": "#text",
+                                            "text_alignment": "center",
+                                            "type": "label"
+                                        }
+                                    }
+                                ],
+                                "size": [
+                                    "100%cm + 2px",
+                                    11
+                                ],
+                                "type": "panel"
+                            }
+                        },
+                        {
+                            "interact_padding@common.empty_panel": {
+                                "bindings": [
+                                    {
+                                        "binding_condition": "always",
+                                        "binding_name": "#interact_visible",
+                                        "binding_name_override": "#visible"
+                                    }
+                                ],
+                                "size": [
+                                    "100%sm",
+                                    18
+                                ],
+                                "visible": "$show_interact_padding"
+                            }
+                        },
+                        {
+                            "survival_buffer@common.empty_panel": {
+                                "bindings": [
+                                    {
+                                        "binding_name": "#show_survival_ui",
+                                        "binding_name_override": "#visible"
+                                    }
+                                ],
+                                "size": [
+                                    "100%sm",
+                                    17
+                                ],
+                                "visible": "$show_survival_padding"
+                            }
+                        },
+                        {
+                            "armor_buffer@common.empty_panel": {
+                                "bindings": [
+                                    {
+                                        "binding_name": "#is_in_classic_ui_mode_with_visible_armor",
+                                        "binding_name_override": "#visible"
+                                    }
+                                ],
+                                "size": [
+                                    "100%sm",
+                                    8
+                                ],
+                                "visible": false
+                            }
+                        }
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%c"
+                    ],
+                    "type": "stack_panel"
+                }
+            }
+        ],
+        "size": [
+            "100%cm",
+            "100%cm"
+        ],
+        "type": "panel"
+    },
+    "hud_content": {
+        "modifications": [
+            {
+                "array_name": "controls",
+                "operation": "insert_front",
+                "value": [
+                    {
+                        "mod@common_toggles.light_text_toggle_sw_2": {
+                            "$button_mappings": [
+                                {
+                                    "from_button_id": "button.menu_select",
+                                    "mapping_type": "double_pressed",
+                                    "to_button_id": "button.evoker_dep_trai"
+                                }
+                            ],
+                            "$button_text": "",
+                            "$default_border_visible": false,
+                            "$default_texture": "textures/ui/clear_ui",
+                            "$hover_border_visible": false,
+                            "$hover_texture": "textures/ui/clear_ui",
+                            "$locked_texture": "textures/ui/clear_ui",
+                            "$pressed_no_hover_texture": "textures/ui/clear_ui",
+                            "$pressed_texture": "textures/ui/clear_ui",
+                            "$toggle_group_forced_index": 55,
+                            "$toggle_view_binding_name": "open_mod_menu",
+                            "anchor_from": "bottom_left",
+                            "anchor_to": "bottom_left",
+                            "layer": 8,
+                            "size": [
+                                20,
+                                20
+                            ]
+                        }
+                    },
+                    {
+                        "mod_menu_screen@config.ev_mod_menu": {
+                            "controls": [
+                                {
+                                    "v_mod_menu_screen@hud.mod_dialog_panel": {}
+                                }
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "hide_button_panel": {
+                            "bindings": [
+                                {
+                                    "binding_condition": "always",
+                                    "binding_name": "#inventory_touch_button or #hud_visible",
+                                    "binding_name_override": "#visible",
+                                    "binding_type": "global"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "hide_button@common_buttons.light_text_button": {
+                                        "$button_text": "H",
+                                        "$focus_border_size": [
+                                            0,
+                                            0
+                                        ],
+                                        "$pressed_button_name": "button.hide_gui_all",
+                                        "anchor_from": "top_middle",
+                                        "anchor_to": "top_middle",
+                                        "bindings": [
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "hide_button_tg",
+                                                "source_property_name": "#toggle_state",
+                                                "target_property_name": "#visible"
+                                            }
+                                        ],
+                                        "offset": [
+                                            38,
+                                            0.5
+                                        ],
+                                        "size": [
+                                            20,
+                                            20
+                                        ]
+                                    }
+                                }
+                            ],
+                            "type": "panel"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "hud_player_renderer": {
+        "controls": [
+            {
+                "3d": {
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "paper_doll_panel",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "hud_player": {
+                                "animation_reset_name": "screen_animation_reset",
+                                "anims": [
+                                    "@common.screen_exit_size_animation_push",
+                                    "@common.screen_exit_size_animation_pop",
+                                    "@common.screen_entrance_size_animation_push",
+                                    "@common.screen_entrance_size_animation_pop"
+                                ],
+                                "bindings": [
+                                    {
+                                        "binding_type": "view",
+                                        "source_control_name": "3d_paper_doll",
+                                        "source_property_name": "#toggle_state",
+                                        "target_property_name": "#visible"
+                                    }
+                                ],
+                                "layer": 1,
+                                "renderer": "hud_player_renderer",
+                                "type": "custom"
+                            }
+                        }
+                    ],
+                    "size": [
+                        15,
+                        15
+                    ],
+                    "type": "panel"
+                }
+            },
+            {
+                "2d": {
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "paper_doll_panel",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "hud_player": {
+                                "animation_reset_name": "screen_animation_reset",
+                                "anims": [
+                                    "@common.screen_exit_size_animation_push",
+                                    "@common.screen_exit_size_animation_pop",
+                                    "@common.screen_entrance_size_animation_push",
+                                    "@common.screen_entrance_size_animation_pop"
+                                ],
+                                "bindings": [
+                                    {
+                                        "binding_type": "view",
+                                        "source_control_name": "2d_paper_doll",
+                                        "source_property_name": "#toggle_state",
+                                        "target_property_name": "#visible"
+                                    }
+                                ],
+                                "layer": 1,
+                                "renderer": "live_player_renderer",
+                                "type": "custom"
+                            }
+                        }
+                    ],
+                    "size": [
+                        15,
+                        15
+                    ],
+                    "type": "panel"
+                }
+            }
+        ],
+        "type": "panel"
+    },
+    "hud_screen@common.base_screen": {
+        "$screen_animations": [
+            "@common.screen_exit_animation_push_fade",
+            "@common.screen_exit_animation_pop_fade",
+            "@common.screen_entrance_animation_push_fade",
+            "@common.screen_entrance_animation_pop_fade"
+        ],
+        "$screen_content": "hud.hud_content",
+        "absorbs_input": false,
+        "always_accepts_input": true,
+        "button_mappings": [
+            {
+                "from_button_id": "button.scoreboard",
+                "mapping_type": "global",
+                "to_button_id": "button.scoreboard"
+            },
+            {
+                "from_button_id": "button.inventory_left",
+                "mapping_type": "global",
+                "to_button_id": "button.hotbar_inventory_left"
+            },
+            {
+                "from_button_id": "button.inventory_right",
+                "mapping_type": "global",
+                "to_button_id": "button.hotbar_inventory_right"
+            },
+            {
+                "from_button_id": "button.hide_gui",
+                "mapping_type": "global",
+                "to_button_id": "button.hide_gui_all"
+            },
+            {
+                "from_button_id": "button.hide_tooltips",
+                "mapping_type": "global",
+                "to_button_id": "button.hide_tooltips_hud"
+            },
+            {
+                "from_button_id": "button.hide_paperdoll",
+                "mapping_type": "global",
+                "to_button_id": "button.hide_paperdoll_hud"
+            },
+            {
+                "from_button_id": "button.slot1",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_1"
+            },
+            {
+                "from_button_id": "button.slot2",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_2"
+            },
+            {
+                "from_button_id": "button.slot3",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_3"
+            },
+            {
+                "from_button_id": "button.slot4",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_4"
+            },
+            {
+                "from_button_id": "button.slot5",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_5"
+            },
+            {
+                "from_button_id": "button.slot6",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_6"
+            },
+            {
+                "from_button_id": "button.slot7",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_7"
+            },
+            {
+                "from_button_id": "button.slot8",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_8"
+            },
+            {
+                "from_button_id": "button.slot9",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_9"
+            },
+            {
+                "from_button_id": "button.slot0",
+                "mapping_type": "global",
+                "to_button_id": "button.slot_0"
+            }
+        ],
+        "is_showing_menu": false,
+        "low_frequency_rendering": true,
+        "send_telemetry": false,
+        "should_steal_mouse": true
+    },
+    "item_id_aux_text_item": {
+        "bindings": [
+            {
+                "binding_collection_name": "hotbar_items",
+                "binding_name": "#slot_selected",
+                "binding_name_override": "#visible",
+                "binding_type": "collection"
+            }
+        ],
+        "controls": [
+            {
+                "itemIDPanel": {
+                    "type": "image",
+                    "anchor_from": "bottom_right",
+                    "anchor_to": "bottom_right",
+                    "texture": "textures/ui/banners_dark",
+                    "offset": [
+                        -2,
+                        -2
+                    ],
+                    "size": [
+                        "100%cm + 4px",
+                        "100%cm + 4px"
+                    ],
+                    "controls": [
+                        {
+                            "item_id_aux_text": {
+                                "bindings": [
+                                    {
+                                        "binding_collection_name": "hotbar_items",
+                                        "binding_condition": "none",
+                                        "binding_name": "#item_id_aux",
+                                        "binding_type": "collection"
+                                    },
+                                    {
+                                        "binding_type": "view",
+                                        "source_property_name": "('§eItem ID Aux : ' + '§r' + #item_id_aux)",
+                                        "target_property_name": "#text"
+                                    }
+                                ],
+                                "layer": 12,
+                                "shadow": true,
+                                "size": [
+                                    "default",
+                                    "default"
+                                ],
+                                "text": "#text",
+                                "type": "label"
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "size": [
+            "0",
+            "0"
+        ],
+        "type": "panel"
+    },
+    "item_id_aux_text_panel": {
+        "bindings": [
+            {
+                "binding_name": "#hotbar_grid_dimensions",
+                "binding_type": "global"
+            }
+        ],
+        "collection_name": "hotbar_items",
+        "grid_dimension_binding": "#hotbar_grid_dimensions",
+        "grid_item_template": "hud.item_id_aux_text_item",
+        "size": [
+            0,
+            0
+        ],
+        "type": "grid"
+    },
+    "item_name_text@hud.v_item_name_text": {
+        "offset": [
+            0,
+            -14
+        ]
+    },
+    "main_hand_slot": {
+        "$durability_bar_required|default": true,
+        "bindings": [
+            {
+                "binding_collection_name": "hotbar_items",
+                "binding_name": "#slot_selected",
+                "binding_name_override": "#visible",
+                "binding_type": "collection"
+            }
+        ],
+        "controls": [
+            {
+                "hotbar_parent": {
+                    "controls": [
+                        {
+                            "item_icon@hotbar_hud_item_icon": {
+                                "layer": 3,
+                                "size": [
+                                    16,
+                                    16
+                                ]
+                            }
+                        },
+                        {
+                            "item_dura@item_durability": {
+                                "layer": 5
+                            }
+                        }
+                    ],
+                    "size": [
+                        18,
+                        18
+                    ],
+                    "type": "panel"
+                }
+            },
+            {
+                "hotbar_renderer": {
+                    "bindings": [
+                        {
+                            "binding_collection_name": "$hotbar_collection_name",
+                            "binding_type": "collection_details"
+                        }
+                    ],
+                    "layer": 10,
+                    "renderer": "hotbar_cooldown_renderer",
+                    "size": [
+                        20,
+                        20
+                    ],
+                    "type": "custom"
+                }
+            }
+        ],
+        "layer": 1,
+        "size": [
+            0,
+            0
+        ],
+        "type": "panel"
+    },
+    "mod_dialog_panel": {
+        "bindings": [
+            {
+                "binding_type": "view",
+                "source_control_name": "open_mod_menu",
+                "source_property_name": "#toggle_state",
+                "target_property_name": "#visible"
+            }
+        ],
+        "controls": [
+            {
+                "select_dialog@common_dialogs.v_main_panel_no_buttons": {
+                    "$child_control": "hud.v_select_scroll",
+                    "$ev_bg_alpha": 0.8,
+                    "$fill_alpha": 0,
+                    "$show_close_button": false,
+                    "$text_name": "§fSelect",
+                    "anchor_from": "top_left",
+                    "anchor_to": "top_left",
+                    "layer": 30,
+                    "size": [
+                        115,
+                        170
+                    ]
+                }
+            },
+            {
+                "content_dialog@common_dialogs.v_main_panel_no_buttons": {
+                    "$child_control": "hud.v_content_scroll",
+                    "$ev_bg_alpha": 0.8,
+                    "$fill_alpha": 0,
+                    "$show_close_button": false,
+                    "$text_name": "§fMod Menu",
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "layer": 30,
+                    "size": [
+                        242,
+                        170
+                    ]
+                }
+            },
+            {
+                "close@common_toggles.light_text_toggle_sw_2": {
+                    "$button_text": "§fX",
+                    "$default_border_visible": false,
+                    "$default_texture": "textures/ui/default_toggle_button_dark",
+                    "$hover_border_visible": false,
+                    "$hover_texture": "textures/ui/hover_toggle_button_dark",
+                    "$locked_texture": "textures/ui/hover_toggle_button_dark",
+                    "$pressed_no_hover_texture": "textures/ui/hover_toggle_button_dark",
+                    "$pressed_texture": "textures/ui/hover_toggle_button_dark",
+                    "$toggle_group_forced_index": 60,
+                    "$toggle_view_binding_name": "null",
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "layer": 43,
+                    "size": [
+                        20,
+                        20
+                    ]
+                }
+            },
+            {
+                "brighter_panel": {
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "brighter_option_panel",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "brighter_option@common_dialogs.v_main_panel_no_buttons": {
+                                "$child_control": "hud.zbrighter_option",
+                                "$ev_bg_alpha": 1.5,
+                                "$fill_alpha": 0,
+                                "$show_close_button": false,
+                                "$text_name": "§fOption",
+                                "$texture": "textures/ui/hover_toggle_button_dark",
+                                "layer": 150,
+                                "size": [
+                                    200,
+                                    145
+                                ]
+                            }
+                        },
+                        {
+                            "close@hud.settings_toggle": {
+                                "$button_text": "§fX",
+                                "$default_border_visible": false,
+                                "$default_texture": "textures/ui/default_toggle_button_dark",
+                                "$hover_border_visible": false,
+                                "$hover_texture": "textures/ui/hover_toggle_button_dark",
+                                "$locked_texture": "textures/ui/hover_toggle_button_dark",
+                                "$pressed_no_hover_texture": "textures/ui/hover_toggle_button_dark",
+                                "$pressed_texture": "textures/ui/hover_toggle_button_dark",
+                                "$toggle_group_forced_index": 2,
+                                "$toggle_name": "brighter_option",
+                                "$toggle_view_binding_name": "null",
+                                "anchor_from": "top_right",
+                                "anchor_to": "top_right",
+                                "layer": 153,
+                                "size": [
+                                    20,
+                                    20
+                                ]
+                            }
+                        }
+                    ],
+                    "layer": 142,
+                    "size": [
+                        200,
+                        145
+                    ],
+                    "type": "screen"
+                }
+            },
+            {
+                "cr_panel": {
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "crosshair_option_panel",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "cr_option@common_dialogs.v_main_panel_no_buttons": {
+                                "$child_control": "hud.zcr_option",
+                                "$ev_bg_alpha": 1.5,
+                                "$fill_alpha": 0,
+                                "$show_close_button": false,
+                                "$text_name": "§fOption",
+                                "$texture": "textures/ui/hover_toggle_button_dark",
+                                "layer": 150,
+                                "size": [
+                                    200,
+                                    145
+                                ]
+                            }
+                        },
+                        {
+                            "close@hud.settings_toggle": {
+                                "$button_text": "§fX",
+                                "$default_border_visible": false,
+                                "$default_texture": "textures/ui/default_toggle_button_dark",
+                                "$hover_border_visible": false,
+                                "$hover_texture": "textures/ui/hover_toggle_button_dark",
+                                "$locked_texture": "textures/ui/hover_toggle_button_dark",
+                                "$pressed_no_hover_texture": "textures/ui/hover_toggle_button_dark",
+                                "$pressed_texture": "textures/ui/hover_toggle_button_dark",
+                                "$toggle_group_forced_index": 2,
+                                "$toggle_name": "crosshair_option",
+                                "$toggle_view_binding_name": "null",
+                                "anchor_from": "top_right",
+                                "anchor_to": "top_right",
+                                "layer": 153,
+                                "size": [
+                                    20,
+                                    20
+                                ]
+                            }
+                        }
+                    ],
+                    "layer": 142,
+                    "size": [
+                        200,
+                        145
+                    ],
+                    "type": "screen"
+                }
+            }
+        ],
+        "size": [
+            359,
+            170
+        ],
+        "type": "panel"
+    },
+    "mod_menu_toggle@common_toggles.light_ui_toggle": {
+        "$button_type_panel": "hud.content_toggle_label",
+        "$default_border_visible": false,
+        "$default_texture": "textures/ui/button_texture/off",
+        "$hover_border_visible": true,
+        "$hover_texture": "textures/ui/button_texture/on",
+        "$locked_texture": "textures/ui/button_texture/off",
+        "$pressed_no_hover_texture": "textures/ui/button_texture/on",
+        "$pressed_texture": "textures/ui/button_texture/off",
+        "$toggle_name": "content_tab"
+    },
+    "mod_menu_toggle_x@common_toggles.light_ui_toggle": {
+        "$button_type_panel": "hud.content_toggle_label",
+        "$default_border_visible": false,
+        "$default_texture": "textures/ui/button_texture/off",
+        "$hover_border_visible": true,
+        "$hover_texture": "textures/ui/button_texture/on",
+        "$locked_texture": "textures/ui/button_texture/off",
+        "$pressed_no_hover_texture": "textures/ui/button_texture/on",
+        "$pressed_texture": "textures/ui/button_texture/off"
+    },
+    "namespace": "hud",
+    "play_music_ic": {
+        "size": [
+            13,
+            13
+        ],
+        "texture": "textures/ui/play_music_ic",
+        "type": "image"
+    },
+    "root_panel": {
+        "modifications": [
+            {
+                "array_name": "controls",
+                "operation": "insert_front",
+                "value": [
+                    {
+                        "armor_hud": {
+                            "anchor_from": "bottom_right",
+                            "anchor_to": "bottom_right",
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_armor_hud_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "hud_player": {
+                                        "layer": 1,
+                                        "renderer": "live_player_renderer",
+                                        "size": [
+                                            24,
+                                            24
+                                        ],
+                                        "type": "custom"
+                                    }
+                                }
+                            ],
+                            "offset": [
+                                0,
+                                1613
+                            ],
+                            "size": [
+                                20,
+                                20
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "input_pnl": {
+                            "anchor_from": "bottom_left",
+                            "anchor_to": "bottom_left",
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_input_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "touch ": {
+                                        "bindings": [
+                                            {
+                                                "binding_condition": "always",
+                                                "binding_name": "#inventory_touch_button",
+                                                "binding_name_override": "#visible",
+                                                "binding_type": "global"
+                                            }
+                                        ],
+                                        "layer": 2,
+                                        "shadow": true,
+                                        "text": "§eInput : §fTouch",
+                                        "type": "label"
+                                    }
+                                },
+                                {
+                                    "controller": {
+                                        "bindings": [
+                                            {
+                                                "binding_condition": "always",
+                                                "binding_name": "#gamepad_helper_visible",
+                                                "binding_name_override": "#visible",
+                                                "binding_type": "global"
+                                            }
+                                        ],
+                                        "layer": 2,
+                                        "shadow": true,
+                                        "text": "§eInput : §fController",
+                                        "type": "label"
+                                    }
+                                },
+                                {
+                                    "keyboard_mouse": {
+                                        "bindings": [
+                                            {
+                                                "binding_condition": "always",
+                                                "binding_name": "#keyboard_helper_visible",
+                                                "binding_name_override": "#visible",
+                                                "binding_type": "global"
+                                            }
+                                        ],
+                                        "layer": 2,
+                                        "shadow": true,
+                                        "text": "§eInput : §fKeyboard & Mouse",
+                                        "type": "label"
+                                    }
+                                }
+                            ],
+                            "layer": 1,
+                            "size": [
+                                "100%c + 6px",
+                                "100%c + 2px"
+                            ],
+                            "texture": "textures/ui/banners_dark",
+                            "type": "image"
+                        }
+                    },
+                    {
+                        "clock_and_compass": {
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_toolbox_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "recovery_compass": {
+                                        "bindings": [
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "anti_crash",
+                                                "source_property_name": "#toggle_state",
+                                                "target_property_name": "#visible"
+                                            }
+                                        ],
+                                        "controls": [
+                                            {
+                                                "show_survival_tools_compass2": {
+                                                    "$item": 42598400,
+                                                    "property_bag": {
+                                                        "#item_id_aux": "$item"
+                                                    },
+                                                    "renderer": "inventory_item_renderer",
+                                                    "size": [
+                                                        12,
+                                                        12
+                                                    ],
+                                                    "type": "custom"
+                                                }
+                                            }
+                                        ],
+                                        "size": [
+                                            12,
+                                            12
+                                        ],
+                                        "type": "panel"
+                                    }
+                                },
+                                {
+                                    "compass": {
+                                        "property_bag": {
+                                            "#item_id_aux": 22609920
+                                        },
+                                        "renderer": "inventory_item_renderer",
+                                        "size": [
+                                            12,
+                                            12
+                                        ],
+                                        "type": "custom"
+                                    }
+                                },
+                                {
+                                    "clock": {
+                                        "property_bag": {
+                                            "#item_id_aux": 22740992
+                                        },
+                                        "renderer": "inventory_item_renderer",
+                                        "size": [
+                                            12,
+                                            12
+                                        ],
+                                        "type": "custom"
+                                    }
+                                }
+                            ],
+                            "layer": 2,
+                            "offset": [
+                                -117,
+                                0
+                            ],
+                            "size": [
+                                12,
+                                "default"
+                            ],
+                            "type": "stack_panel"
+                        }
+                    },
+                    {
+                        "v_percent": {
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "endurance_counter",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "percent@hud.v_percent": {}
+                                }
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "crosshair": {
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_crosshair_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "Crosshair": {
+                                        "anchor_from": "center",
+                                        "anchor_to": "center",
+                                        "bindings": [
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "smart_crosshair_tg",
+                                                "source_property_name": "(not #toggle_state)",
+                                                "target_property_name": "#visible"
+                                            }
+                                        ],
+                                        "font_type": "smooth",
+                                        "offset": [
+                                            0,
+                                            -0.5
+                                        ],
+                                        "shadow": false,
+                                        "text": "+",
+                                        "type": "label"
+                                    }
+                                }
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "main_hand_hud": {
+                            "anchor_from": "bottom_right",
+                            "anchor_to": "bottom_right",
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_mh_hud",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "v_grid": {
+                                        "$hotbar_collection_name|default": "hotbar_items",
+                                        "bindings": [
+                                            {
+                                                "binding_name": "#hotbar_grid_dimensions",
+                                                "binding_type": "global"
+                                            }
+                                        ],
+                                        "collection_name": "$hotbar_collection_name",
+                                        "grid_dimension_binding": "#hotbar_grid_dimensions",
+                                        "grid_item_template": "hud.main_hand_slot",
+                                        "type": "grid"
+                                    }
+                                }
+                            ],
+                            "offset": [
+                                -2,
+                                -18
+                            ],
+                            "size": [
+                                16,
+                                16
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "brighter": {
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "brighter_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "brighter": {
+                                        "alpha": 0.2,
+                                        "bindings": [
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "brighter_x_tg",
+                                                "source_property_name": "(not #toggle_state)",
+                                                "target_property_name": "#visible"
+                                            },
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "brighter_alpha",
+                                                "source_property_name": "(#slider_value / 10)",
+                                                "target_property_name": "#alpha"
+                                            }
+                                        ],
+                                        "color1": [
+                                            1,
+                                            1,
+                                            1,
+                                            1
+                                        ],
+                                        "color2": [
+                                            1,
+                                            1,
+                                            1,
+                                            1
+                                        ],
+                                        "renderer": "gradient_renderer",
+                                        "size": [
+                                            "157%",
+                                            "153%"
+                                        ],
+                                        "type": "custom"
+                                    }
+                                }
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "brighter2": {
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "brighter_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "brighter2": {
+                                        "alpha": 0.3,
+                                        "bindings": [
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "brighter_x_tg",
+                                                "source_property_name": "#toggle_state",
+                                                "target_property_name": "#visible"
+                                            },
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "brighter_alpha",
+                                                "source_property_name": "(#slider_value / 10)",
+                                                "target_property_name": "#alpha"
+                                            }
+                                        ],
+                                        "color1": [
+                                            0.255,
+                                            0.241,
+                                            0,
+                                            1
+                                        ],
+                                        "color2": [
+                                            0.255,
+                                            0.241,
+                                            0,
+                                            1
+                                        ],
+                                        "layer": 2,
+                                        "renderer": "gradient_renderer",
+                                        "size": [
+                                            "157%",
+                                            "153%"
+                                        ],
+                                        "type": "custom"
+                                    }
+                                }
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "world_name": {
+                            "anchor_from": "bottom_left",
+                            "anchor_to": "bottom_left",
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "world_name_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "world_name_text": {
+                                        "bindings": [
+                                            {
+                                                "binding_name": "#player_list_title",
+                                                "binding_name_override": "#text"
+                                            }
+                                        ],
+                                        "layer": 12,
+                                        "text": "#text",
+                                        "type": "label"
+                                    }
+                                }
+                            ],
+                            "layer": 1,
+                            "offset": [
+                                0,
+                                -14
+                            ],
+                            "size": [
+                                "100%c + 6px",
+                                "100%c + 2px"
+                            ],
+                            "texture": "textures/ui/banners_dark",
+                            "type": "image"
+                        }
+                    },
+                    {
+                        "smart_cross": {
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_crosshair_tg",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "abcd": {
+                                        "bindings": [
+                                            {
+                                                "binding_type": "view",
+                                                "source_control_name": "smart_crosshair_tg",
+                                                "source_property_name": "#toggle_state",
+                                                "target_property_name": "#visible"
+                                            }
+                                        ],
+                                        "controls": [
+                                            {
+                                                "a@hud.smart_crosshair_panel": {}
+                                            }
+                                        ],
+                                        "size": [
+                                            "100%cm",
+                                            "100%cm"
+                                        ],
+                                        "type": "panel"
+                                    }
+                                }
+                            ],
+                            "size": [
+                                "100%c",
+                                "100%c"
+                            ],
+                            "type": "panel"
+                        }
+                    },
+                    {
+                        "item_id_aux": {
+                            "anchor_from": "bottom_right",
+                            "anchor_to": "bottom_right",
+                            "bindings": [
+                                {
+                                    "binding_type": "view",
+                                    "source_control_name": "v_item_id_aux",
+                                    "source_property_name": "#toggle_state",
+                                    "target_property_name": "#visible"
+                                }
+                            ],
+                            "controls": [
+                                {
+                                    "item_id_aux_text_panel@hud.item_id_aux_text_panel": {}
+                                }
+                            ],
+                            "size": [
+                                "100%c",
+                                "100%c"
+                            ],
+                            "type": "panel"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "root_panel/boss_health_panel": {
+        "bindings": [
+            {
+                "binding_type": "view",
+                "source_control_name": "v_boss_tg",
+                "source_property_name": "#toggle_state",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+    "root_panel/mob_effects_renderer": {
+        "bindings": [
+            {
+                "binding_type": "view",
+                "source_control_name": "v_mob_ef_tg",
+                "source_property_name": "#toggle_state",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+    "root_panel/sidebar": {
+        "bindings": [
+            {
+                "binding_type": "view",
+                "source_control_name": "v_scoreboard_tg",
+                "source_property_name": "#toggle_state",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+    "root_panel/vignette_rend": {
+        "bindings": [
+            {
+                "binding_type": "view",
+                "source_control_name": "vignette_tg",
+                "source_property_name": "#toggle_state",
+                "target_property_name": "#visible"
+            }
+        ]
+    },
+    "seclect_toggle_label": {
+        "controls": [
+            {
+                "icon": {
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "layer": 65,
+                    "offset": [
+                        5,
+                        0
+                    ],
+                    "size": [
+                        21,
+                        21
+                    ],
+                    "texture": "$select_icon",
+                    "type": "image"
+                }
+            },
+            {
+                "label": {
+                    "text": "$button_text",
+                    "type": "label"
+                }
+            }
+        ],
+        "size": [
+            98,
+            25
+        ],
+        "type": "panel"
+    },
+    "select_toggle_template@common_toggles.other_toggle": {
+        "$button_type_panel": "hud.seclect_toggle_label",
+        "$default_texture": "textures/ui/default_toggle_button_dark",
+        "$hover_texture": "textures/ui/hover_toggle_button_dark",
+        "$locked_texture": "textures/ui/hover_toggle_button_dark",
+        "$pressed_no_hover_texture": "textures/ui/hover_toggle_button_dark",
+        "$pressed_texture": "textures/ui/hover_toggle_button_dark",
+        "$toggle_name": "select_tab"
+    },
+    "settings_toggle@common_toggles.light_ui_toggle": {
+        "$button_type_panel": "common_toggles.template_toggle_txt_sw",
+        "$default_border_visible": false,
+        "$hover_border_visible": true,
+        "$radio_toggle_group": true
+    },
+    "smart_crosshair": {
+        "bindings": [
+            {
+                "binding_collection_name": "hotbar_items",
+                "binding_name": "#slot_selected",
+                "binding_name_override": "#visible",
+                "binding_type": "collection"
+            }
+        ],
+        "controls": [
+            {
+                "smart_crosshair": {
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "bindings": [
+                        {
+                            "binding_collection_name": "hotbar_items",
+                            "binding_name": "#item_id_aux",
+                            "binding_type": "collection"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "((#item_id_aux = 24510464) or (#item_id_aux = 25559040) or (#item_id_aux = 27656192))",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "font_type": "smooth",
+                    "offset": [
+                        0,
+                        -0.5
+                    ],
+                    "shadow": false,
+                    "text": "+",
+                    "type": "label"
+                }
+            }
+        ],
+        "type": "panel"
+    },
+    "smart_crosshair_panel": {
+        "bindings": [
+            {
+                "binding_name": "#hotbar_grid_dimensions",
+                "binding_type": "global"
+            }
+        ],
+        "collection_name": "hotbar_items",
+        "grid_dimension_binding": "#hotbar_grid_dimensions",
+        "grid_item_template": "hud.smart_crosshair",
+        "size": [
+            "100%cm",
+            0
+        ],
+        "type": "grid"
+    },
+    "stop_music_ic": {
+        "size": [
+            13,
+            13
+        ],
+        "texture": "textures/ui/stop_music_ic",
+        "type": "image"
+    },
+    "v_content_panel": {
+        "controls": [
+            {
+                "utilities": {
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "utilities_tab",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "stack_panel_x": {
+                                "controls": [
+                                    {
+                                        "armor_hud_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Armor Hud",
+                                            "$select_icon": "textures/ui/armor_hud_ic",
+                                            "$toggle_default_state": "$armor_hud",
+                                            "$toggle_view_binding_name": "v_armor_hud_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "main_hand_hud_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Main Hand Hud",
+                                            "$select_icon": "textures/ui/main_hand_hud_ic",
+                                            "$toggle_default_state": "$main_hand_hud",
+                                            "$toggle_view_binding_name": "v_mh_hud",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_xx": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "brighter": {
+                                            "controls": [
+                                                {
+                                                    "brighter_toggle@hud.mod_menu_toggle": {
+                                                        "$button_text": "Brighter",
+                                                        "$select_icon": "textures/ui/brighter_ic",
+                                                        "$toggle_default_state": "$brighter",
+                                                        "$toggle_view_binding_name": "brighter_tg",
+                                                        "size": [
+                                                            72,
+                                                            62
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "bright@hud.settings_toggle": {
+                                                        "$button_text": "",
+                                                        "$default_texture": "textures/ui/gear_ic",
+                                                        "$hover_texture": "textures/ui/gear_ic",
+                                                        "$locked_texture": "textures/ui/gear_ic",
+                                                        "$pressed_no_hover_texture": "textures/ui/gear_ic",
+                                                        "$pressed_texture": "textures/ui/gear_ic",
+                                                        "$toggle_group_forced_index": 1,
+                                                        "$toggle_name": "brighter_option",
+                                                        "$toggle_view_binding_name": "brighter_option_panel",
+                                                        "anchor_from": "bottom_right",
+                                                        "anchor_to": "bottom_right",
+                                                        "layer": 51,
+                                                        "offset": [
+                                                            -2,
+                                                            -12
+                                                        ],
+                                                        "size": [
+                                                            13,
+                                                            13
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "size": [
+                                                72,
+                                                62
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        },
+                        {
+                            "stack_panel_xx": {
+                                "controls": [
+                                    {
+                                        "recovery_compass_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Recovery Compass",
+                                            "$select_icon": "textures/ui/recovery_compass_ic",
+                                            "$toggle_view_binding_name": "anti_crash",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "compass_and_clock_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Compass & Clock",
+                                            "$select_icon": "textures/ui/compass_and_clock_ic",
+                                            "$toggle_default_state": "$compass_and_clock",
+                                            "$toggle_view_binding_name": "v_toolbox_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_xx": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "chat_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Chat",
+                                            "$select_icon": "textures/ui/chat_ic",
+                                            "$toggle_default_state": "$chat",
+                                            "$toggle_view_binding_name": "chat_pnl",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        },
+                        {
+                            "stack_panel_xxx": {
+                                "controls": [
+                                    {
+                                        "percent_durability_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Percent Durability",
+                                            "$select_icon": "textures/ui/percent_durability_ic",
+                                            "$toggle_default_state": "$percent_durability",
+                                            "$toggle_view_binding_name": "endurance_counter",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "bossbar_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Bossbar",
+                                            "$select_icon": "textures/ui/bossbar_ic",
+                                            "$toggle_default_state": "$bossbar",
+                                            "$toggle_view_binding_name": "v_boss_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_xx": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "aux_id_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Item Aux Id",
+                                            "$select_icon": "textures/ui/item_aux_id_ic",
+                                            "$toggle_default_state": "$item_aux_id",
+                                            "$toggle_view_binding_name": "v_item_id_aux",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        },
+                        {
+                            "stack_panel_xxxx": {
+                                "controls": [
+                                    {
+                                        "paperdoll_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Paper Doll",
+                                            "$select_icon": "textures/ui/paper_doll_ic",
+                                            "$toggle_default_state": "$paper_doll",
+                                            "$toggle_view_binding_name": "paper_doll_panel",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "paperdoll_x": {
+                                            "bindings": [
+                                                {
+                                                    "binding_type": "view",
+                                                    "source_control_name": "paper_doll_panel",
+                                                    "source_property_name": "#toggle_state",
+                                                    "target_property_name": "#visible"
+                                                }
+                                            ],
+                                            "controls": [
+                                                {
+                                                    "3dpaperdoll_toggle@hud.mod_menu_toggle_x": {
+                                                        "$button_text": "Paper Doll [3D]",
+                                                        "$radio_toggle_group": true,
+                                                        "$select_icon": "textures/ui/3d_paper_doll_ic",
+                                                        "$toggle_default_state": true,
+                                                        "$toggle_group_forced_index": 0,
+                                                        "$toggle_name": "paper_doll_tab",
+                                                        "$toggle_view_binding_name": "3d_paper_doll",
+                                                        "size": [
+                                                            72,
+                                                            62
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "size": [
+                                                72,
+                                                62
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "space_xx": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "paperdoll_xx": {
+                                            "bindings": [
+                                                {
+                                                    "binding_type": "view",
+                                                    "source_control_name": "paper_doll_panel",
+                                                    "source_property_name": "#toggle_state",
+                                                    "target_property_name": "#visible"
+                                                }
+                                            ],
+                                            "controls": [
+                                                {
+                                                    "2dpaperdoll_toggle@hud.mod_menu_toggle_x": {
+                                                        "$button_text": "Paper Doll [2D]",
+                                                        "$radio_toggle_group": true,
+                                                        "$select_icon": "textures/ui/2d_paper_doll_ic",
+                                                        "$toggle_group_forced_index": 2,
+                                                        "$toggle_name": "paper_doll_tab",
+                                                        "$toggle_view_binding_name": "2d_paper_doll",
+                                                        "size": [
+                                                            72,
+                                                            62
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "size": [
+                                                72,
+                                                62
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        }
+                    ],
+                    "type": "stack_panel"
+                }
+            },
+            {
+                "display": {
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "display_tab",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "stack_panel_x": {
+                                "controls": [
+                                    {
+                                        "vignette_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Vignette",
+                                            "$select_icon": "textures/ui/vignette_ic",
+                                            "$toggle_default_state": "$vignette",
+                                            "$toggle_view_binding_name": "vignette_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "effect_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Effect Icon",
+                                            "$select_icon": "textures/ui/effect_ic",
+                                            "$toggle_default_state": "$effect_icon",
+                                            "$toggle_view_binding_name": "v_mob_ef_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_xx": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "scoreboard@hud.mod_menu_toggle": {
+                                            "$button_text": "Scoreboard",
+                                            "$select_icon": "textures/ui/scoreboard_ic",
+                                            "$toggle_default_state": "$scoreboard",
+                                            "$toggle_view_binding_name": "v_scoreboard_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        },
+                        {
+                            "stack_panel_xx": {
+                                "controls": [
+                                    {
+                                        "input_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Input",
+                                            "$select_icon": "textures/ui/input_ic",
+                                            "$toggle_default_state": "$input",
+                                            "$toggle_view_binding_name": "v_input_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "hide_button_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "F1 Button",
+                                            "$select_icon": "textures/ui/f1_ic",
+                                            "$toggle_default_state": "$f1_button",
+                                            "$toggle_view_binding_name": "hide_button_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "space_xx": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "java_item_name_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "Java Item Name",
+                                            "$select_icon": "textures/ui/java_item_name_ic",
+                                            "$toggle_default_state": "$java_item_name",
+                                            "$toggle_view_binding_name": "hide_enchant_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        },
+                        {
+                            "stack_panel_xxx": {
+                                "controls": [
+                                    {
+                                        "crosshair": {
+                                            "controls": [
+                                                {
+                                                    "cr@hud.mod_menu_toggle": {
+                                                        "$button_text": "Crosshair",
+                                                        "$select_icon": "textures/ui/crosshair_ic",
+                                                        "$toggle_default_state": "$crosshair",
+                                                        "$toggle_view_binding_name": "v_crosshair_tg",
+                                                        "size": [
+                                                            72,
+                                                            62
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "crosshair@hud.settings_toggle": {
+                                                        "$button_text": "",
+                                                        "$default_texture": "textures/ui/gear_ic",
+                                                        "$hover_texture": "textures/ui/gear_ic",
+                                                        "$locked_texture": "textures/ui/gear_ic",
+                                                        "$pressed_no_hover_texture": "textures/ui/gear_ic",
+                                                        "$pressed_texture": "textures/ui/gear_ic",
+                                                        "$toggle_group_forced_index": 1,
+                                                        "$toggle_name": "crosshair_option",
+                                                        "$toggle_view_binding_name": "crosshair_option_panel",
+                                                        "anchor_from": "bottom_right",
+                                                        "anchor_to": "bottom_right",
+                                                        "layer": 51,
+                                                        "offset": [
+                                                            -2,
+                                                            -12
+                                                        ],
+                                                        "size": [
+                                                            13,
+                                                            13
+                                                        ]
+                                                    }
+                                                }
+                                            ],
+                                            "size": [
+                                                72,
+                                                62
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "space_x": {
+                                            "size": [
+                                                1,
+                                                1
+                                            ],
+                                            "type": "panel"
+                                        }
+                                    },
+                                    {
+                                        "world_name_toggle@hud.mod_menu_toggle": {
+                                            "$button_text": "World Name",
+                                            "$select_icon": "textures/ui/world_name_ic",
+                                            "$toggle_default_state": "$world_name",
+                                            "$toggle_view_binding_name": "world_name_tg",
+                                            "size": [
+                                                72,
+                                                62
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "orientation": "horizontal",
+                                "size": [
+                                    "100%c",
+                                    63
+                                ],
+                                "type": "stack_panel"
+                            }
+                        }
+                    ],
+                    "type": "stack_panel"
+                }
+            },
+            {
+                "music": {
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "music_tab",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "music_1": {
+                                "controls": [
+                                    {
+                                        "txt_music": {
+                                            "anchor_from": "left_middle",
+                                            "anchor_to": "left_middle",
+                                            "font_type": "smooth",
+                                            "layer": 23,
+                                            "offset": [
+                                                4,
+                                                0
+                                            ],
+                                            "text": "C418-Sweden",
+                                            "type": "label"
+                                        }
+                                    },
+                                    {
+                                        "play_music@common_buttons.light_content_button": {
+                                            "$button_content": "hud.play_music_ic",
+                                            "$pressed_button_name": "button.play_sound",
+                                            "anchor_from": "right_middle",
+                                            "anchor_to": "right_middle",
+                                            "layer": 23,
+                                            "offset": [
+                                                -26,
+                                                0
+                                            ],
+                                            "size": [
+                                                25,
+                                                25
+                                            ],
+                                            "sound_name": "music.pl.x1",
+                                            "sound_volume": 1
+                                        }
+                                    },
+                                    {
+                                        "stop_music@common_buttons.light_content_button": {
+                                            "$button_content": "hud.stop_music_ic",
+                                            "$pressed_button_name": "button.play_sound",
+                                            "anchor_from": "right_middle",
+                                            "anchor_to": "right_middle",
+                                            "layer": 23,
+                                            "offset": [
+                                                0,
+                                                0
+                                            ],
+                                            "size": [
+                                                25,
+                                                25
+                                            ],
+                                            "sound_name": "music.pl.x1",
+                                            "sound_volume": 1.0E-7
+                                        }
+                                    }
+                                ],
+                                "size": [
+                                    "100%",
+                                    26
+                                ],
+                                "texture": "textures/ui/banners_dark",
+                                "type": "image"
+                            }
+                        },
+                        {
+                            "space_1": {
+                                "size": [
+                                    1,
+                                    1
+                                ],
+                                "type": "panel"
+                            }
+                        },
+                        {
+                            "music_2": {
+                                "controls": [
+                                    {
+                                        "txt_music": {
+                                            "anchor_from": "left_middle",
+                                            "anchor_to": "left_middle",
+                                            "font_type": "smooth",
+                                            "layer": 23,
+                                            "offset": [
+                                                4,
+                                                0
+                                            ],
+                                            "text": "Doan Tuyet Nang Di [ Khong Loi ]",
+                                            "type": "label"
+                                        }
+                                    },
+                                    {
+                                        "play_music@common_buttons.light_content_button": {
+                                            "$button_content": "hud.play_music_ic",
+                                            "$pressed_button_name": "button.play_sound",
+                                            "anchor_from": "right_middle",
+                                            "anchor_to": "right_middle",
+                                            "layer": 23,
+                                            "offset": [
+                                                -26,
+                                                0
+                                            ],
+                                            "size": [
+                                                25,
+                                                25
+                                            ],
+                                            "sound_name": "music.pl.x2",
+                                            "sound_volume": 1
+                                        }
+                                    },
+                                    {
+                                        "stop_music@common_buttons.light_content_button": {
+                                            "$button_content": "hud.stop_music_ic",
+                                            "$pressed_button_name": "button.play_sound",
+                                            "anchor_from": "right_middle",
+                                            "anchor_to": "right_middle",
+                                            "layer": 23,
+                                            "offset": [
+                                                0,
+                                                0
+                                            ],
+                                            "size": [
+                                                25,
+                                                25
+                                            ],
+                                            "sound_name": "music.pl.x2",
+                                            "sound_volume": 1.0E-7
+                                        }
+                                    }
+                                ],
+                                "size": [
+                                    "100%",
+                                    26
+                                ],
+                                "texture": "textures/ui/banners_dark",
+                                "type": "image"
+                            }
+                        },
+                        {
+                            "space_2": {
+                                "size": [
+                                    1,
+                                    1
+                                ],
+                                "type": "panel"
+                            }
+                        },
+                        {
+                            "music_3": {
+                                "controls": [
+                                    {
+                                        "txt_music": {
+                                            "anchor_from": "left_middle",
+                                            "anchor_to": "left_middle",
+                                            "font_type": "smooth",
+                                            "layer": 23,
+                                            "offset": [
+                                                4,
+                                                0
+                                            ],
+                                            "text": "C418-Clark",
+                                            "type": "label"
+                                        }
+                                    },
+                                    {
+                                        "play_music@common_buttons.light_content_button": {
+                                            "$button_content": "hud.play_music_ic",
+                                            "$pressed_button_name": "button.play_sound",
+                                            "anchor_from": "right_middle",
+                                            "anchor_to": "right_middle",
+                                            "layer": 23,
+                                            "offset": [
+                                                -26,
+                                                0
+                                            ],
+                                            "size": [
+                                                25,
+                                                25
+                                            ],
+                                            "sound_name": "music.pl.x3",
+                                            "sound_volume": 1
+                                        }
+                                    },
+                                    {
+                                        "stop_music@common_buttons.light_content_button": {
+                                            "$button_content": "hud.stop_music_ic",
+                                            "$pressed_button_name": "button.play_sound",
+                                            "anchor_from": "right_middle",
+                                            "anchor_to": "right_middle",
+                                            "layer": 23,
+                                            "offset": [
+                                                0,
+                                                0
+                                            ],
+                                            "size": [
+                                                25,
+                                                25
+                                            ],
+                                            "sound_name": "music.pl.x3",
+                                            "sound_volume": 1.0E-7
+                                        }
+                                    }
+                                ],
+                                "size": [
+                                    "100%",
+                                    26
+                                ],
+                                "texture": "textures/ui/banners_dark",
+                                "type": "image"
+                            }
+                        }
+                    ],
+                    "type": "stack_panel"
+                }
+            },
+            {
+                "info": {
+                    "anchor_from": "top_right",
+                    "anchor_to": "top_right",
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "info_tab",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "text_x": {
+                                "size": [
+                                    "100%",
+                                    "default"
+                                ],
+                                "text": "How to save mod menu ?",
+                                "type": "label"
+                            }
+                        },
+                        {
+                            "text_xx": {
+                                "size": [
+                                    "100%",
+                                    "default"
+                                ],
+                                "text": "§aTo save the mod menu you need to edit this file",
+                                "type": "label"
+                            }
+                        },
+                        {
+                            "text_xxx": {
+                                "size": [
+                                    "100%",
+                                    "default"
+                                ],
+                                "text": "§ePath : /resource_packs/Evoker UI Pack v3/System/mod_menu_panel/mod_menu.json",
+                                "type": "label"
+                            }
+                        }
+                    ],
+                    "type": "stack_panel"
+                }
+            }
+        ],
+        "layer": 40,
+        "size": [
+            "100%",
+            "100%c"
+        ],
+        "type": "panel"
+    },
+    "v_content_scroll@common.scrolling_panel": {
+        "$scrolling_content": "hud.v_content_panel",
+        "$show_background": false
+    },
+    "v_item_name_text": {
+        "controls": [
+            {
+                "default_panel": {
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "hide_enchant_tg",
+                            "source_property_name": "(not #toggle_state)",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "item_name_text_root@hud.item_name_text_root": {}
+                        }
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%cm"
+                    ],
+                    "type": "panel"
+                }
+            },
+            {
+                "java_item_text_panel": {
+                    "bindings": [
+                        {
+                            "binding_type": "view",
+                            "source_control_name": "hide_enchant_tg",
+                            "source_property_name": "#toggle_state",
+                            "target_property_name": "#visible"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "v_item_name_text_root@hud.hide_enchant_text": {}
+                        }
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%cm"
+                    ],
+                    "type": "panel"
+                }
+            }
+        ],
+        "size": [
+            "100%c",
+            "100%c"
+        ],
+        "type": "panel"
+    },
+    "v_old_toggle@common_toggles.light_image_toggle": {
+        "$border_visible": false,
+        "$button_type_panel": "hud.v_template_toggle",
+        "$checked_control": "common_toggles.toggle_checked",
+        "$checked_hover_control": "common_toggles.toggle_checked_hover",
+        "$checked_locked_control": "common_toggles.toggle_checked_locked",
+        "$checked_locked_hover_control": "common_toggles.toggle_checked_locked",
+        "$checked_locked_texture": "textures/ui/button_texture/toggle_on",
+        "$default_border_visible": false,
+        "$default_texture": "textures/ui/button_texture/toggle_off",
+        "$hover_texture": "textures/ui/button_texture/toggle_on",
+        "$locked_alpha": 0.5,
+        "$pressed_no_hover_texture": "textures/ui/button_texture/toggle_on_hover",
+        "$pressed_texture": "textures/ui/button_texture/toggle_off_hover",
+        "$toggle_name": "hacker_toggle",
+        "$unchecked_control": "common_toggles.toggle_unchecked",
+        "$unchecked_hover_control": "common_toggles.toggle_unchecked_hover",
+        "$unchecked_locked_control": "common_toggles.toggle_unchecked_locked",
+        "$unchecked_locked_hover_control": "common_toggles.toggle_unchecked_locked",
+        "$unchecked_locked_texture": "textures/ui/button_texture/toggle_on"
+    },
+    "v_percent@asa_hud_content.asa_main_hand_durability_percent": {
+        "anchor_from": "bottom_middle",
+        "anchor_to": "bottom_middle",
+        "offset": [
+            135,
+            -13
+        ]
+    },
+    "v_select_panel": {
+        "controls": [
+            {
+                "utilities@hud.select_toggle_template": {
+                    "$button_text": "Utilities",
+                    "$select_icon": "textures/ui/utilities",
+                    "$toggle_group_forced_index": 0,
+                    "$toggle_view_binding_name": "utilities_tab",
+                    "layer": 40,
+                    "size": [
+                        98,
+                        25
+                    ]
+                }
+            },
+            {
+                "display@hud.select_toggle_template": {
+                    "$button_text": "Display",
+                    "$select_icon": "textures/ui/display",
+                    "$toggle_group_forced_index": 3,
+                    "$toggle_view_binding_name": "display_tab",
+                    "layer": 40,
+                    "size": [
+                        98,
+                        25
+                    ]
+                }
+            },
+            {
+                "music@hud.select_toggle_template": {
+                    "$button_text": "Music",
+                    "$select_icon": "textures/ui/music",
+                    "$toggle_group_forced_index": 7,
+                    "$toggle_view_binding_name": "music_tab",
+                    "layer": 40,
+                    "size": [
+                        98,
+                        25
+                    ]
+                }
+            },
+            {
+                "info@hud.select_toggle_template": {
+                    "$button_text": "Info",
+                    "$select_icon": "textures/ui/save_mod_ic",
+                    "$toggle_group_forced_index": 9,
+                    "$toggle_view_binding_name": "info_tab",
+                    "layer": 40,
+                    "size": [
+                        98,
+                        25
+                    ]
+                }
+            }
+        ],
+        "type": "stack_panel"
+    },
+    "v_select_scroll@common.scrolling_panel": {
+        "$scrolling_content": "hud.v_select_panel",
+        "$show_background": false
+    },
+    "v_template_toggle": {
+        "controls": [
+            {
+                "txt": {
+                    "anchor_from": "left_middle",
+                    "anchor_to": "left_middle",
+                    "layer": 158,
+                    "offset": [
+                        32,
+                        0
+                    ],
+                    "shadow": true,
+                    "text": "$button_text",
+                    "type": "label"
+                }
+            }
+        ],
+        "type": "panel"
+    },
+    "zbrighter_option": {
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "controls": [
+            {
+                "slider_text": {
+                    "layer": 157,
+                    "text": "Opacity",
+                    "type": "label"
+                }
+            },
+            {
+                "space_x": {
+                    "size": [
+                        2,
+                        2
+                    ],
+                    "type": "panel"
+                }
+            },
+            {
+                "slider@common.v_slider_panel": {
+                    "$config_slider": "$brighter_alpha",
+                    "$slider_steps": 5,
+                    "$slider_view_binding_name": "brighter_alpha",
+                    "layer": 157,
+                    "size": [
+                        "100% - 8px",
+                        12
+                    ]
+                }
+            },
+            {
+                "space_xx": {
+                    "size": [
+                        2,
+                        2
+                    ],
+                    "type": "panel"
+                }
+            },
+            {
+                "protect_eyes@hud.v_old_toggle": {
+                    "$button_text": "Protect eyes",
+                    "$toggle_view_binding_name": "brighter_x_tg",
+                    "layer": 157,
+                    "size": [
+                        28,
+                        22
+                    ]
+                }
+            },
+            {
+                "text": {
+                    "font_type": "smooth",
+                    "layer": 157,
+                    "size": [
+                        "100%",
+                        "default"
+                    ],
+                    "text": "§e[!] Creates a warm color overlay that blocks blue light",
+                    "type": "label"
+                }
+            }
+        ],
+        "type": "stack_panel"
+    },
+    "zcr_option": {
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "controls": [
+            {
+                "cr@hud.v_old_toggle": {
+                    "$button_text": "Smart Crosshair",
+                    "$toggle_view_binding_name": "smart_crosshair_tg",
+                    "layer": 157,
+                    "size": [
+                        28,
+                        22
+                    ]
+                }
+            }
+        ],
+        "type": "stack_panel"
+    }
+}

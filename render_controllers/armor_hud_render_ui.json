@@ -1,0 +1,222 @@
+{
+    "format_version": "1.8.0",
+    "render_controllers": {
+        "controller.render.armor_check.pumpkin_helmet": {
+            "geometry": "Geometry.v_helmet",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "textures": [
+                "texture.ept_helmet"
+            ]
+        },
+        "controller.render.armor_check.v_boots": {
+            "arrays": {
+                "textures": {
+                    "array.v_boots": [
+                        "texture.leather_boots",
+                        "texture.chainmail_boots",
+                        "texture.iron_boots",
+                        "texture.diamond_boots",
+                        "texture.gold_boots",
+                        "texture.ept_boots",
+                        "texture.ept_boots",
+                        "texture.netherite_boots"
+                    ]
+                }
+            },
+            "geometry": "Geometry.v_boots",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "overlay_color": {
+                "a": "q.armor_material_slot(3) == (1) ? 0.42",
+                "b": "q.armor_material_slot(3) == (1) ? 0.43",
+                "g": "q.armor_material_slot(3) == (1) ? 0.1",
+                "r": "q.armor_material_slot(3) == (1) ? 0.37"
+            },
+            "part_visibility": [
+                {
+                    "*": "q.armor_texture_slot(3) != (-1)"
+                }
+            ],
+            "textures": [
+                "array.v_boots[v.q_h_boots]"
+            ]
+        },
+        "controller.render.armor_check.v_boots_ept": {
+            "geometry": "Geometry.v_boots",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "textures": [
+                "texture.ept_boots"
+            ]
+        },
+        "controller.render.armor_check.v_chestplate": {
+            "arrays": {
+                "textures": {
+                    "array.v_chestplate": [
+                        "texture.leather_chestplate",
+                        "texture.chainmail_chestplate",
+                        "texture.iron_chestplate",
+                        "texture.diamond_chestplate",
+                        "texture.gold_chestplate",
+                        "texture.elytra",
+                        "texture.ept_chestplate",
+                        "texture.netherite_chestplate"
+                    ]
+                }
+            },
+            "geometry": "Geometry.v_chestplate",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "overlay_color": {
+                "a": "q.armor_material_slot(1) == (1) ? 0.42",
+                "b": "q.armor_material_slot(1) == (1) ? 0.43",
+                "g": "q.armor_material_slot(1) == (1) ? 0.1",
+                "r": "q.armor_material_slot(1) == (1) ? 0.37"
+            },
+            "part_visibility": [
+                {
+                    "*": "q.armor_texture_slot(1) != (-1)"
+                }
+            ],
+            "textures": [
+                "array.v_chestplate[v.q_h_chestplate]"
+            ]
+        },
+        "controller.render.armor_check.v_chestplate_ept": {
+            "geometry": "Geometry.v_chestplate",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "textures": [
+                "texture.ept_chestplate"
+            ]
+        },
+        "controller.render.armor_check.v_helmet": {
+            "arrays": {
+                "textures": {
+                    "array.v_helmet": [
+                        "texture.leather_helmet",
+                        "texture.chainmail_helmet",
+                        "texture.iron_helmet",
+                        "texture.diamond_helmet",
+                        "texture.gold_helmet",
+                        "texture.ept_helmet",
+                        "texture.turtle_helmet",
+                        "texture.netherite_helmet"
+                    ]
+                }
+            },
+            "geometry": "Geometry.v_helmet",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "overlay_color": {
+                "a": "q.armor_material_slot(0) == (1) ? 0.42",
+                "b": "q.armor_material_slot(0) == (1) ? 0.43",
+                "g": "q.armor_material_slot(0) == (1) ? 0.1",
+                "r": "q.armor_material_slot(0) == (1) ? 0.37"
+            },
+            "part_visibility": [
+                {
+                    "*": "q.armor_texture_slot(0) != (-1)"
+                }
+            ],
+            "textures": [
+                "array.v_helmet[v.q_h_helmet]"
+            ]
+        },
+        "controller.render.armor_check.v_helmet_ept": {
+            "geometry": "Geometry.v_helmet",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "textures": [
+                "texture.ept_helmet"
+            ]
+        },
+        "controller.render.armor_check.v_leggings": {
+            "arrays": {
+                "textures": {
+                    "array.v_leggings": [
+                        "texture.leather_leggings",
+                        "texture.chainmail_leggings",
+                        "texture.iron_leggings",
+                        "texture.diamond_leggings",
+                        "texture.gold_leggings",
+                        "texture.ept_leggings",
+                        "texture.ept_leggings",
+                        "texture.netherite_leggings"
+                    ]
+                }
+            },
+            "geometry": "Geometry.v_leggings",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "overlay_color": {
+                "a": "q.armor_material_slot(2) == (1) ? 0.42",
+                "b": "q.armor_material_slot(2) == (1) ? 0.43",
+                "g": "q.armor_material_slot(2) == (1) ? 0.1",
+                "r": "q.armor_material_slot(2) == (1) ? 0.37"
+            },
+            "part_visibility": [
+                {
+                    "*": "q.armor_texture_slot(2) != (-1)"
+                }
+            ],
+            "textures": [
+                "array.v_leggings[v.q_h_leggings]"
+            ]
+        },
+        "controller.render.armor_check.v_leggings_ept": {
+            "geometry": "Geometry.v_leggings",
+            "is_hurt_color": {},
+            "light_color_multiplier": 1.22,
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "textures": [
+                "texture.ept_leggings"
+            ]
+        }
+    }
+}
